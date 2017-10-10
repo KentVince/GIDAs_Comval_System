@@ -117,7 +117,7 @@ public class Profile extends javax.swing.JFrame {
           
      classDb.dbconnect();
      
-  auto_number();
+        auto_number();
           Municipal.list_municipality(cbo_municipality);
 //      Login log = new Login();
 
@@ -152,23 +152,10 @@ public class Profile extends javax.swing.JFrame {
             "purok_id",
         }, 0);
       
-      
-      
-        
-        
-  
-      
+     
         jTable_display.setModel(model);
        
-        /*
-        tbl.getColumnModel().setColumnMargin(23);
-        Jtable_Renderer.Jtable_Properties(tbl, 0, 3);
-        Jtable_Renderer.Jtable_Properties(tbl, 1, 2);
-        Jtable_Renderer.Jtable_Properties(tbl, 2, 2);
-        Jtable_Renderer.Jtable_Properties(tbl, 3, 3);
-       Jtable_Renderer.Jtable_Properties(tbl, 4, 3);
-        */
-        
+      
          
          removeColumns();
         
@@ -301,7 +288,51 @@ public class Profile extends javax.swing.JFrame {
       
       
       
-     
+       void enabled()
+       {
+           
+           txt_family_head_firstname.setEnabled(true);
+            txt_family_head_lastname.setEnabled(true);
+            txt_family_head_middlename.setEnabled(true);
+            txt_age.setEnabled(true);
+            cbo_sex.setEnabled(true);
+            cbo_status.setEnabled(true);
+            txt_occupation.setEnabled(true);
+            cbo_status_of_employment.setEnabled(true);
+            txt_spouse_name.setEnabled(true);
+            txt_spouse_age.setEnabled(true);
+            txt_spouse_occupation.setEnabled(true);
+            txt_no_of_children_male.setEnabled(true);
+            txt_no_of_children_female.setEnabled(true);
+             cbo_sex.setEnabled(true);
+            cbo_status.setEnabled(true);
+            cbo_status_of_employment.setEnabled(true);
+           
+       }
+       
+       void disabled()
+       {
+           
+           
+           
+       }
+       
+       
+      void setthetext()
+      {
+          
+           txt_family_head_firstname.setText("");
+            txt_family_head_lastname.setText("");
+            txt_family_head_middlename.setText("");
+            txt_age.setText("");
+            txt_occupation.setText("");
+            txt_spouse_name.setText("");
+            txt_spouse_age.setText("");
+            txt_spouse_occupation.setText("");
+            txt_no_of_children_male.setText("");
+            txt_no_of_children_female.setText("");
+          
+      }
      
      
      
@@ -371,6 +402,7 @@ public class Profile extends javax.swing.JFrame {
         btn_cancel = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btn_delete = new javax.swing.JButton();
+        btn_update1 = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_new = new javax.swing.JButton();
         btn_save = new javax.swing.JButton();
@@ -586,6 +618,14 @@ public class Profile extends javax.swing.JFrame {
         btn_delete.setText("DELETE");
         jPanel4.add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 80, 40));
 
+        btn_update1.setText("UPDATE 1");
+        btn_update1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_update1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_update1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 80, 40));
+
         btn_update.setText("UPDATE");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -699,8 +739,8 @@ public class Profile extends javax.swing.JFrame {
             }
              
           
-	
-             String timeString2="";
+             
+                 String timeString2="";
                   java.util.Date d2 = new java.util.Date();
                   SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                   timeString2 = sdf2.format(d2);
@@ -980,41 +1020,16 @@ public class Profile extends javax.swing.JFrame {
         }
         
         
-        btn_cancel.setVisible(true);
+            btn_cancel.setVisible(true);
             btn_new.setVisible(false);
             txt_address.setVisible(false);
+            btn_next.setVisible(false);
             txt_address.setEnabled(false);
-           btn_next.setVisible(false);
             
-            txt_family_head_firstname.setEnabled(true);
-            txt_family_head_lastname.setEnabled(true);
-            txt_family_head_middlename.setEnabled(true);
-            txt_age.setEnabled(true);
-            cbo_sex.setEnabled(true);
-            cbo_status.setEnabled(true);
-            txt_occupation.setEnabled(true);
-            cbo_status_of_employment.setEnabled(true);
-            txt_spouse_name.setEnabled(true);
-            txt_spouse_age.setEnabled(true);
-            txt_spouse_occupation.setEnabled(true);
-            txt_no_of_children_male.setEnabled(true);
-            txt_no_of_children_female.setEnabled(true);
-        
-        
             
-            txt_family_head_firstname.setText("");
-            txt_family_head_lastname.setText("");
-            txt_family_head_middlename.setText("");
-            txt_age.setText("");
-            cbo_sex.setEnabled(true);
-            cbo_status.setEnabled(true);
-            txt_occupation.setText("");
-            cbo_status_of_employment.setEnabled(true);
-            txt_spouse_name.setText("");
-            txt_spouse_age.setText("");
-            txt_spouse_occupation.setText("");
-            txt_no_of_children_male.setText("");
-            txt_no_of_children_female.setText("");
+            enabled();
+            
+            setthetext();
             
             
             
@@ -1042,21 +1057,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-             txt_address.setVisible(false);
-        
-             txt_family_head_firstname.setEnabled(true);
-            txt_family_head_lastname.setEnabled(true);
-            txt_family_head_middlename.setEnabled(true);
-            txt_age.setEnabled(true);
-            cbo_sex.setEnabled(true);
-            cbo_status.setEnabled(true);
-            txt_occupation.setEnabled(true);
-            cbo_status_of_employment.setEnabled(true);
-            txt_spouse_name.setEnabled(true);
-            txt_spouse_age.setEnabled(true);
-            txt_spouse_occupation.setEnabled(true);
-            txt_no_of_children_male.setEnabled(true);
-            txt_no_of_children_female.setEnabled(true);
+            
         
         
             
@@ -1172,6 +1173,28 @@ public class Profile extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btn_updateActionPerformed
 
+    private void btn_update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_update1ActionPerformed
+        // TODO add your handling code here:
+        
+         txt_address.setVisible(false);
+        
+            txt_family_head_firstname.setEnabled(true);
+            txt_family_head_lastname.setEnabled(true);
+            txt_family_head_middlename.setEnabled(true);
+            txt_age.setEnabled(true);
+            cbo_sex.setEnabled(true);
+            cbo_status.setEnabled(true);
+            txt_occupation.setEnabled(true);
+            cbo_status_of_employment.setEnabled(true);
+            txt_spouse_name.setEnabled(true);
+            txt_spouse_age.setEnabled(true);
+            txt_spouse_occupation.setEnabled(true);
+            txt_no_of_children_male.setEnabled(true);
+            txt_no_of_children_female.setEnabled(true);
+            btn_update1.setVisible(false);
+        
+    }//GEN-LAST:event_btn_update1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1218,6 +1241,7 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JButton btn_next;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_update;
+    private javax.swing.JButton btn_update1;
     private javax.swing.JComboBox<String> cbo_barangay;
     private javax.swing.JComboBox<String> cbo_municipality;
     private javax.swing.JComboBox<String> cbo_purok;

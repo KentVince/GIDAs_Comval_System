@@ -7,7 +7,11 @@ package gidas_comval_system;
 
 import ClassAddresses.classIndicators;
 import ClassAddresses.classInidicatorsGetset;
+import static gidas_comval_system.Profile.s;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,21 +36,24 @@ public class indicators extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cbo_basic_need = new javax.swing.JComboBox<>();
         txt_desc = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        lbl_basic_id = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("INDICATORS");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("BASIC NEEDS");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 77, -1, -1));
 
         jLabel3.setText("DESCRIPTION");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 115, -1, -1));
 
         cbo_basic_need.setName(""); // NOI18N
         cbo_basic_need.addItemListener(new java.awt.event.ItemListener() {
@@ -59,63 +66,32 @@ public class indicators extends javax.swing.JFrame {
                 cbo_basic_needActionPerformed(evt);
             }
         });
+        getContentPane().add(cbo_basic_need, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 74, 219, -1));
+        getContentPane().add(txt_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 112, 219, -1));
 
-        txt_desc.setText("indi_desc");
-
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("SAVE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 180, 80, 40));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("CANCEL");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 80, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbo_basic_need, 0, 219, Short.MAX_VALUE)
-                            .addComponent(txt_desc))))
-                .addContainerGap(45, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(33, 33, 33))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbo_basic_need, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_desc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(90, 90, 90))
-        );
+        lbl_basic_id.setText("jLabel4");
+        getContentPane().add(lbl_basic_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 78, 50, -1));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("INDICATORS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 400, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -123,7 +99,32 @@ public class indicators extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
       
-      
+            classDb.dbconnect();
+            
+                 String timeString2="";
+                  java.util.Date d2 = new java.util.Date();
+                  SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                  timeString2 = sdf2.format(d2);
+                  String mm = timeString2;
+                  String updated = "0000-00-00 00:00:00";
+                  
+        
+        try {
+            s =  classDb.conn.createStatement();
+             s.executeUpdate("Insert INTO indicators(description,created_at,updated_at,basic_needs_id) "
+                + "values('" + txt_desc.getText() + "','"+ mm +"'," 
+                + "'"+ updated +"', "
+                + "'"+ lbl_basic_id.getText()+"')");
+            JOptionPane.showMessageDialog(null, "Save Record, Done.....", "Saving Record Notification", JOptionPane.INFORMATION_MESSAGE);
+
+            s.close();
+            classDb.conn.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(indicators.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        
              
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -139,10 +140,8 @@ public class indicators extends javax.swing.JFrame {
         int id_de = d_vo.getidneeds();
         String n = d_vo.getneeds();
 
-        
-        
-        
-        
+        lbl_basic_id.setText(""+id_de);
+     
         
         
     }//GEN-LAST:event_cbo_basic_needItemStateChanged
@@ -190,6 +189,8 @@ public class indicators extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_basic_id;
     private javax.swing.JTextField txt_desc;
     // End of variables declaration//GEN-END:variables
 }
