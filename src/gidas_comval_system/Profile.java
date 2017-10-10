@@ -933,8 +933,6 @@ public class Profile extends javax.swing.JFrame {
           //  txt_address.setVisible(true);
             disabled();
             
-            
-            
          lbl_ids.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 0).toString());
         txt_code.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 1).toString());
         txt_family_head_firstname.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 2).toString());
@@ -956,6 +954,9 @@ public class Profile extends javax.swing.JFrame {
          
          
            jLabel16.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 20).toString());
+           
+           
+           
            
           //txt_address.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 15).toString());
           lbl_ginikanan.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 16).toString());
