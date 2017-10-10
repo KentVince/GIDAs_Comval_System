@@ -26,6 +26,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -52,9 +53,9 @@ public class Profile extends javax.swing.JFrame {
     
     public Profile() throws SQLException {
         initComponents();
-        auto_number();
+         
         displayData();
-        Municipal.list_municipality(cbo_municipality);
+       
         
         txt_code.setEnabled(false);
          txt_code.setDisabledTextColor(Color.BLACK);
@@ -113,10 +114,14 @@ public class Profile extends javax.swing.JFrame {
      
      
       public void displayData() throws SQLException {
-        classDb.dbconnect();
-
+          
+     classDb.dbconnect();
+     
+  auto_number();
+          Municipal.list_municipality(cbo_municipality);
 //      Login log = new Login();
 
+       txt_address.setVisible(false);
        
        
         
@@ -320,7 +325,6 @@ public class Profile extends javax.swing.JFrame {
         txt_family_head_middlename = new javax.swing.JTextField();
         txt_family_head_lastname = new javax.swing.JTextField();
         txt_family_head_firstname = new javax.swing.JTextField();
-        btn_save = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txt_age = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -332,6 +336,7 @@ public class Profile extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        txt_address = new javax.swing.JTextField();
         cbo_municipality = new javax.swing.JComboBox<>();
         cbo_barangay = new javax.swing.JComboBox<>();
         cbo_purok = new javax.swing.JComboBox<>();
@@ -362,9 +367,21 @@ public class Profile extends javax.swing.JFrame {
         lblpurokid = new javax.swing.JLabel();
         codepur = new javax.swing.JLabel();
         lbl_ids = new javax.swing.JLabel();
+        btn_next = new javax.swing.JButton();
+        btn_cancel = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        btn_delete = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_new = new javax.swing.JButton();
+        btn_save = new javax.swing.JButton();
+        lbl_ginikanan = new javax.swing.JLabel();
+        lbl_igsoon = new javax.swing.JLabel();
+        lbl_pagumangkon = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_display = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -389,14 +406,6 @@ public class Profile extends javax.swing.JFrame {
         jPanel1.add(txt_family_head_lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 110, 30));
         jPanel1.add(txt_family_head_firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 110, 30));
 
-        btn_save.setText("Save");
-        btn_save.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_saveActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 610, 90, 40));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Age (edad) :");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
@@ -406,6 +415,7 @@ public class Profile extends javax.swing.JFrame {
         jLabel4.setText("Sex :");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
 
+        cbo_sex.setBackground(new java.awt.Color(204, 204, 255));
         cbo_sex.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbo_sex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
         jPanel1.add(cbo_sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 350, 30));
@@ -437,6 +447,7 @@ public class Profile extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Address :");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, -1, -1));
+        jPanel1.add(txt_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 410, 30));
 
         cbo_municipality.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbo_municipality.addItemListener(new java.awt.event.ItemListener() {
@@ -515,7 +526,7 @@ public class Profile extends javax.swing.JFrame {
                 cho_ginikananActionPerformed(evt);
             }
         });
-        jPanel1.add(cho_ginikanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 570, -1, -1));
+        jPanel1.add(cho_ginikanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 570, 90, -1));
 
         cho_igsoon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cho_igsoon.setText("Igsoon");
@@ -558,7 +569,53 @@ public class Profile extends javax.swing.JFrame {
         lbl_ids.setText("jLabel1");
         jPanel1.add(lbl_ids, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 540, 660));
+        btn_next.setText("NEXT");
+        jPanel1.add(btn_next, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 610, 80, 40));
+
+        btn_cancel.setText("CANCEL");
+        btn_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 610, 80, 40));
+
+        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_delete.setText("DELETE");
+        jPanel4.add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 80, 40));
+
+        btn_update.setText("UPDATE");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 80, 40));
+
+        btn_new.setText("NEW");
+        btn_new.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_newActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_new, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 90, 40));
+
+        btn_save.setText("SAVE");
+        btn_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_saveActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 90, 40));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 490, 60));
+        jPanel1.add(lbl_ginikanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 610, 30, 20));
+        jPanel1.add(lbl_igsoon, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 610, 30, 30));
+        jPanel1.add(lbl_pagumangkon, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 610, 30, 30));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 540, 670));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -579,7 +636,12 @@ public class Profile extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 500));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 490, 660));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Search :");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 50, 30));
+        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 150, 30));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 490, 670));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1090, 700));
 
@@ -728,8 +790,6 @@ public class Profile extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        
-        
       //   account_del();
        //   disable();
        /* 
@@ -747,7 +807,48 @@ public class Profile extends javax.swing.JFrame {
         btnclear.setVisible(true);
        // txt_swap_value.setVisible(false);
        */
+       
+       
+       
         classDb.dbconnect();
+        
+            txt_address.setVisible(true);
+            txt_address.setEnabled(false);
+            txt_address.setDisabledTextColor(Color.BLACK);
+            
+            txt_family_head_firstname.setEnabled(false);
+            txt_family_head_lastname.setEnabled(false);
+            txt_family_head_middlename.setEnabled(false);
+            txt_age.setEnabled(false);
+            cbo_sex.setEnabled(false);
+            cbo_status.setEnabled(false);
+            txt_occupation.setEnabled(false);
+            cbo_status_of_employment.setEnabled(false);
+            txt_spouse_name.setEnabled(false);
+            txt_spouse_age.setEnabled(false);
+            txt_spouse_occupation.setEnabled(false);
+            txt_no_of_children_male.setEnabled(false);
+            txt_no_of_children_female.setEnabled(false);
+            
+            
+           
+            
+            txt_family_head_firstname.setDisabledTextColor(Color.BLACK);
+            txt_family_head_lastname.setDisabledTextColor(Color.BLACK);
+            txt_family_head_middlename.setDisabledTextColor(Color.BLACK);
+            
+            txt_age.setDisabledTextColor(Color.BLACK);
+            
+            txt_occupation.setDisabledTextColor(Color.BLACK);
+            txt_spouse_name.setDisabledTextColor(Color.BLACK);
+            txt_spouse_age.setDisabledTextColor(Color.BLACK);
+            txt_spouse_occupation.setDisabledTextColor(Color.BLACK);
+            txt_no_of_children_male.setDisabledTextColor(Color.BLACK);
+            txt_no_of_children_female.setDisabledTextColor(Color.BLACK);
+            
+            
+            
+            
          lbl_ids.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 0).toString());
         txt_code.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 1).toString());
         txt_family_head_firstname.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 2).toString());
@@ -766,7 +867,60 @@ public class Profile extends javax.swing.JFrame {
          txt_spouse_occupation.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 12).toString());
           txt_no_of_children_male.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 13).toString());
            txt_no_of_children_female.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 14).toString());
+         
+           
+           txt_address.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 15).toString());
+          lbl_ginikanan.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 16).toString());
+          lbl_igsoon.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 17).toString());
+          lbl_pagumangkon.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 18).toString());
           
+          
+          String myginikanan =lbl_ginikanan.getText();
+          String igsoon = lbl_igsoon.getText();
+          String pagumangkon = lbl_pagumangkon.getText();
+          
+          
+          
+          int i = Integer.parseInt(myginikanan);
+          int k = Integer.parseInt(igsoon);
+          int j = Integer.parseInt(pagumangkon);
+          
+          if(i==1)
+          {
+              
+              cho_ginikanan.setSelected(true);
+          }
+          else
+          {
+              cho_ginikanan.setSelected(false);
+              
+          }
+           if(k==1)
+          {
+              
+              cho_igsoon.setSelected(true);
+              
+          }
+           else
+           {
+               cho_igsoon.setSelected(false);
+               
+           }
+           if(j==1)
+          {
+              
+              cho_pagumangkon.setSelected(true);
+              
+          }
+          
+           else
+           {
+                 
+                cho_pagumangkon.setSelected(false);
+           }
+          
+          
+           
           // cbo_municipality.setSelectedItem(jTable_display.getValueAt(jTable_display.getSelectedRow(), 15).toString());
          // cbo_barangay.setSelectedItem(jTable_display.getValueAt(jTable_display.getSelectedRow(), 16).toString());
       //    lblpuro.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 20).toString());
@@ -814,6 +968,210 @@ public class Profile extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTable_displayMouseClicked
 
+    private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
+           
+            
+        try {
+            txt_family_head_firstname.grabFocus();
+            
+            displayData();
+        } catch (SQLException ex) {
+            Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        btn_cancel.setVisible(true);
+            btn_new.setVisible(false);
+            txt_address.setVisible(false);
+            txt_address.setEnabled(false);
+           btn_next.setVisible(false);
+            
+            txt_family_head_firstname.setEnabled(true);
+            txt_family_head_lastname.setEnabled(true);
+            txt_family_head_middlename.setEnabled(true);
+            txt_age.setEnabled(true);
+            cbo_sex.setEnabled(true);
+            cbo_status.setEnabled(true);
+            txt_occupation.setEnabled(true);
+            cbo_status_of_employment.setEnabled(true);
+            txt_spouse_name.setEnabled(true);
+            txt_spouse_age.setEnabled(true);
+            txt_spouse_occupation.setEnabled(true);
+            txt_no_of_children_male.setEnabled(true);
+            txt_no_of_children_female.setEnabled(true);
+        
+        
+            
+            txt_family_head_firstname.setText("");
+            txt_family_head_lastname.setText("");
+            txt_family_head_middlename.setText("");
+            txt_age.setText("");
+            cbo_sex.setEnabled(true);
+            cbo_status.setEnabled(true);
+            txt_occupation.setText("");
+            cbo_status_of_employment.setEnabled(true);
+            txt_spouse_name.setText("");
+            txt_spouse_age.setText("");
+            txt_spouse_occupation.setText("");
+            txt_no_of_children_male.setText("");
+            txt_no_of_children_female.setText("");
+            
+            
+            
+            cho_ginikanan.setSelected(false);
+            cho_igsoon.setSelected(false);
+            cho_pagumangkon.setSelected(false);
+            
+            btn_update.setEnabled(false);
+            btn_delete.setEnabled(false);
+            btn_next.setEnabled(false);
+            
+        
+        
+    }//GEN-LAST:event_btn_newActionPerformed
+
+    private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
+        // TODO add your handling code here:
+        btn_update.setEnabled(true);
+        btn_delete.setEnabled(true);
+         btn_cancel.setVisible(false);
+         btn_next.setVisible(true);
+          btn_next.setEnabled(true);
+        btn_new.setVisible(true);
+    }//GEN-LAST:event_btn_cancelActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+             txt_address.setVisible(false);
+        
+             txt_family_head_firstname.setEnabled(true);
+            txt_family_head_lastname.setEnabled(true);
+            txt_family_head_middlename.setEnabled(true);
+            txt_age.setEnabled(true);
+            cbo_sex.setEnabled(true);
+            cbo_status.setEnabled(true);
+            txt_occupation.setEnabled(true);
+            cbo_status_of_employment.setEnabled(true);
+            txt_spouse_name.setEnabled(true);
+            txt_spouse_age.setEnabled(true);
+            txt_spouse_occupation.setEnabled(true);
+            txt_no_of_children_male.setEnabled(true);
+            txt_no_of_children_female.setEnabled(true);
+        
+        
+            
+            
+            classDb.dbconnect();
+
+        String address = cbo_purok.getSelectedItem() +" ," + cbo_barangay.getSelectedItem() +" ,"+cbo_municipality.getSelectedItem();
+        
+        
+        int ginikanan = 0,igsoonw = 0,pagumangkon = 0 ;
+            
+            if(cho_ginikanan.isSelected())
+        {
+            ginikanan = 1;
+            
+        }else
+            {
+                
+               ginikanan = 0; 
+            }
+             if(cho_igsoon.isSelected())
+        {
+            igsoonw = 1;
+            
+        }else
+            {
+                
+               igsoonw = 0; 
+            }
+             if(cho_pagumangkon.isSelected())
+        {
+            pagumangkon = 1;
+            
+        }else
+            {
+                
+               pagumangkon = 0; 
+            }
+             
+          
+	
+             String timeString2="";
+                  java.util.Date d2 = new java.util.Date();
+                  SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                  timeString2 = sdf2.format(d2);
+                  String updated = timeString2;
+        
+        
+        
+        
+        
+        
+         
+        
+        try {
+            
+           
+            
+            s = classDb.conn.createStatement();
+            s.executeUpdate("UPDATE pro SET last_name = '" + txt_family_head_firstname.getText() + "', "
+                    + "first_name = '" + txt_family_head_lastname.getText() + "', "
+                    + "middle_name = '" + txt_family_head_middlename.getText() + "', "
+                    + "age = '" + txt_age.getText() + "', "  
+                    + "sex = '" + cbo_sex.getSelectedItem() + "', " 
+                    + "civil_status = '" + cbo_status.getSelectedItem() + "', " 
+                    + "occupation = '" + txt_occupation.getText() + "', " 
+                    + "employment_status = '" + cbo_status_of_employment.getSelectedItem() + "', "  
+                    + "spouse_name = '" + txt_spouse_name.getText() + "', " 
+                    + "spouse_age = '" + txt_spouse_age.getText() + "', " 
+                     + "spouse_occupation = '" + txt_spouse_occupation.getText() + "', " 
+                     + "children_male = '" + txt_no_of_children_male.getText() + "', " 
+                     + "children_female = '" + txt_no_of_children_female.getText() + "', "   
+                    + "address = '" + address + "', "  
+                     + "ginikanan = '" + ginikanan + "', "  
+                   // + "euf = '" + Double.parseDouble(txt_euf.getText()) + "', "   
+                  //    + "or3 = '" + txt_or3.getText() + "', "  
+                      + "igsoon = '" + igsoonw + "', "  
+                     + "pag_umangkon = '" + pagumangkon + "', "  
+                   //  + "year = '" + pass + "', "  
+                     + "updated_at = '" + updated + "', "  
+                      + "purok_id = '" + lblpurokid.getText() + "' "         
+                    + "WHERE code = '" + txt_code.getText() + "' "); 
+            
+            
+            
+            
+       
+            JOptionPane.showMessageDialog(null, "Record is Update, Done.....", "Updated Record Notification", JOptionPane.INFORMATION_MESSAGE);
+     
+            
+            
+            
+             
+            s.close();   //close statement
+            classDb.conn.close(); // close connection
+
+            
+            
+            
+            
+        }
+        
+         catch (Exception e) {
+           // Logger.getLogger(OTP.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, e.getLocalizedMessage(), "Error report", JOptionPane.OK_OPTION);
+
+           // JOptionPane.showMessageDialog(null, "WAAAAAAAAAAAAAAAAAAAAAAAAAAAA.....", "Updated Record Notification", JOptionPane.INFORMATION_MESSAGE);
+           
+        }
+            
+            
+            
+            
+    }//GEN-LAST:event_btn_updateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -854,7 +1212,12 @@ public class Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancel;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_new;
+    private javax.swing.JButton btn_next;
     private javax.swing.JButton btn_save;
+    private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbo_barangay;
     private javax.swing.JComboBox<String> cbo_municipality;
     private javax.swing.JComboBox<String> cbo_purok;
@@ -868,6 +1231,7 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel codec;
     private javax.swing.JLabel codemun;
     private javax.swing.JLabel codepur;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -892,10 +1256,16 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_display;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbl_ginikanan;
     private javax.swing.JLabel lbl_ids;
+    private javax.swing.JLabel lbl_igsoon;
+    private javax.swing.JLabel lbl_pagumangkon;
     private javax.swing.JLabel lblpurokid;
+    private javax.swing.JTextField txt_address;
     private javax.swing.JTextField txt_age;
     private javax.swing.JTextField txt_code;
     private javax.swing.JTextField txt_family_head_firstname;
