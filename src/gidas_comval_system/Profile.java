@@ -5,6 +5,7 @@
  */
 package gidas_comval_system;
 
+
 import ClassAddresses.classBarangay;
 import ClassAddresses.classBarangayGetSet;
 import ClassAddresses.classMunicipality;
@@ -22,12 +23,15 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -47,6 +51,9 @@ public class Profile extends javax.swing.JFrame {
       classMunicipality Municipal = new classMunicipality();
       classBarangay Barangay = new classBarangay();
       classPurok Purok = new classPurok();
+      
+      
+      
     DefaultTableModel model;
      
         
@@ -112,16 +119,34 @@ public class Profile extends javax.swing.JFrame {
     }
     
      
+      public void filter(String query)
+    {
+         
+         TableRowSorter<DefaultTableModel> tr=new TableRowSorter<DefaultTableModel>(model);
+      jTable_display.setRowSorter(tr);
+        
+        tr.setRowFilter(RowFilter.regexFilter(query));
+        
+       
+        
+        
+    }
+     
+     
+     
+     
+     
      
       public void displayData() throws SQLException {
           
-     classDb.dbconnect();
-     
+        classDb.dbconnect();
+         disabled();
         auto_number();
-          Municipal.list_municipality(cbo_municipality);
+         Municipal.list_municipality(cbo_municipality);
+       
 //      Login log = new Login();
 
-       txt_address.setVisible(false);
+       
        
        
         
@@ -291,6 +316,10 @@ public class Profile extends javax.swing.JFrame {
        void enabled()
        {
            
+           cbo_municipality.setEnabled(true);
+            cbo_barangay.setEnabled(true);
+            cbo_purok.setEnabled(true);
+           
            txt_family_head_firstname.setEnabled(true);
             txt_family_head_lastname.setEnabled(true);
             txt_family_head_middlename.setEnabled(true);
@@ -313,12 +342,45 @@ public class Profile extends javax.swing.JFrame {
        void disabled()
        {
            
-           
+          
+            
+            cbo_municipality.setEnabled(false);
+            cbo_barangay.setEnabled(false);
+            cbo_purok.setEnabled(false);
+            
+            
+            txt_family_head_firstname.setEnabled(false);
+            txt_family_head_lastname.setEnabled(false);
+            txt_family_head_middlename.setEnabled(false);
+            txt_age.setEnabled(false);
+            cbo_sex.setEnabled(false);
+            cbo_status.setEnabled(false);
+            txt_occupation.setEnabled(false);
+            cbo_status_of_employment.setEnabled(false);
+            txt_spouse_name.setEnabled(false);
+            txt_spouse_age.setEnabled(false);
+            txt_spouse_occupation.setEnabled(false);
+            txt_no_of_children_male.setEnabled(false);
+            txt_no_of_children_female.setEnabled(false);
+            
+            txt_family_head_firstname.setDisabledTextColor(Color.BLACK);
+            txt_family_head_lastname.setDisabledTextColor(Color.BLACK);
+            txt_family_head_middlename.setDisabledTextColor(Color.BLACK);
+            
+            txt_age.setDisabledTextColor(Color.BLACK);
+            
+            txt_occupation.setDisabledTextColor(Color.BLACK);
+            txt_spouse_name.setDisabledTextColor(Color.BLACK);
+            txt_spouse_age.setDisabledTextColor(Color.BLACK);
+            txt_spouse_occupation.setDisabledTextColor(Color.BLACK);
+            txt_no_of_children_male.setDisabledTextColor(Color.BLACK);
+            txt_no_of_children_female.setDisabledTextColor(Color.BLACK);
+            
            
        }
        
        
-      void setthetext()
+      void clear()
       {
           
            txt_family_head_firstname.setText("");
@@ -367,7 +429,6 @@ public class Profile extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        txt_address = new javax.swing.JTextField();
         cbo_municipality = new javax.swing.JComboBox<>();
         cbo_barangay = new javax.swing.JComboBox<>();
         cbo_purok = new javax.swing.JComboBox<>();
@@ -409,11 +470,12 @@ public class Profile extends javax.swing.JFrame {
         lbl_ginikanan = new javax.swing.JLabel();
         lbl_igsoon = new javax.swing.JLabel();
         lbl_pagumangkon = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_display = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_search = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -466,20 +528,19 @@ public class Profile extends javax.swing.JFrame {
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel22.setText("(Municipality)");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 500, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, -1, -1));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel23.setText("(Barangay)");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 500, -1, -1));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel17.setText("(Purok)");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 490, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Address :");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, -1, -1));
-        jPanel1.add(txt_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 410, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
 
         cbo_municipality.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbo_municipality.addItemListener(new java.awt.event.ItemListener() {
@@ -487,7 +548,7 @@ public class Profile extends javax.swing.JFrame {
                 cbo_municipalityItemStateChanged(evt);
             }
         });
-        jPanel1.add(cbo_municipality, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 520, 130, 30));
+        jPanel1.add(cbo_municipality, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 510, 130, 30));
 
         cbo_barangay.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbo_barangay.addItemListener(new java.awt.event.ItemListener() {
@@ -495,7 +556,7 @@ public class Profile extends javax.swing.JFrame {
                 cbo_barangayItemStateChanged(evt);
             }
         });
-        jPanel1.add(cbo_barangay, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 520, 130, 30));
+        jPanel1.add(cbo_barangay, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 130, 30));
 
         cbo_purok.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbo_purok.addItemListener(new java.awt.event.ItemListener() {
@@ -503,7 +564,7 @@ public class Profile extends javax.swing.JFrame {
                 cbo_purokItemStateChanged(evt);
             }
         });
-        jPanel1.add(cbo_purok, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 520, 130, 30));
+        jPanel1.add(cbo_purok, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, 130, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Occupation (Trabaho) :");
@@ -558,7 +619,7 @@ public class Profile extends javax.swing.JFrame {
                 cho_ginikananActionPerformed(evt);
             }
         });
-        jPanel1.add(cho_ginikanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 570, 90, -1));
+        jPanel1.add(cho_ginikanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, 90, -1));
 
         cho_igsoon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cho_igsoon.setText("Igsoon");
@@ -616,6 +677,11 @@ public class Profile extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_delete.setText("DELETE");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
         jPanel4.add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 80, 40));
 
         btn_update1.setText("UPDATE 1");
@@ -655,6 +721,9 @@ public class Profile extends javax.swing.JFrame {
         jPanel1.add(lbl_igsoon, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 610, 30, 30));
         jPanel1.add(lbl_pagumangkon, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 610, 30, 30));
 
+        jLabel16.setText("jLabel16");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 544, 60, 30));
+
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 540, 670));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -679,7 +748,13 @@ public class Profile extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Search :");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 50, 30));
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 150, 30));
+
+        txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_searchKeyReleased(evt);
+            }
+        });
+        jPanel3.add(txt_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 150, 30));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 490, 670));
 
@@ -757,6 +832,8 @@ public class Profile extends javax.swing.JFrame {
                 + "'"+ lblpurokid.getText()+"')");
             JOptionPane.showMessageDialog(null, "Save Record, Done.....", "Saving Record Notification", JOptionPane.INFORMATION_MESSAGE);
 
+            
+             displayData();
             s.close();
             classDb.conn.close();
 
@@ -852,40 +929,9 @@ public class Profile extends javax.swing.JFrame {
        
         classDb.dbconnect();
         
-            txt_address.setVisible(true);
-            txt_address.setEnabled(false);
-            txt_address.setDisabledTextColor(Color.BLACK);
-            
-            txt_family_head_firstname.setEnabled(false);
-            txt_family_head_lastname.setEnabled(false);
-            txt_family_head_middlename.setEnabled(false);
-            txt_age.setEnabled(false);
-            cbo_sex.setEnabled(false);
-            cbo_status.setEnabled(false);
-            txt_occupation.setEnabled(false);
-            cbo_status_of_employment.setEnabled(false);
-            txt_spouse_name.setEnabled(false);
-            txt_spouse_age.setEnabled(false);
-            txt_spouse_occupation.setEnabled(false);
-            txt_no_of_children_male.setEnabled(false);
-            txt_no_of_children_female.setEnabled(false);
-            
-            
-           
-            
-            txt_family_head_firstname.setDisabledTextColor(Color.BLACK);
-            txt_family_head_lastname.setDisabledTextColor(Color.BLACK);
-            txt_family_head_middlename.setDisabledTextColor(Color.BLACK);
-            
-            txt_age.setDisabledTextColor(Color.BLACK);
-            
-            txt_occupation.setDisabledTextColor(Color.BLACK);
-            txt_spouse_name.setDisabledTextColor(Color.BLACK);
-            txt_spouse_age.setDisabledTextColor(Color.BLACK);
-            txt_spouse_occupation.setDisabledTextColor(Color.BLACK);
-            txt_no_of_children_male.setDisabledTextColor(Color.BLACK);
-            txt_no_of_children_female.setDisabledTextColor(Color.BLACK);
-            
+       
+          //  txt_address.setVisible(true);
+            disabled();
             
             
             
@@ -908,11 +954,14 @@ public class Profile extends javax.swing.JFrame {
           txt_no_of_children_male.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 13).toString());
            txt_no_of_children_female.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 14).toString());
          
+         
+           jLabel16.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 20).toString());
            
-           txt_address.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 15).toString());
+          //txt_address.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 15).toString());
           lbl_ginikanan.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 16).toString());
           lbl_igsoon.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 17).toString());
           lbl_pagumangkon.setText(jTable_display.getValueAt(jTable_display.getSelectedRow(), 18).toString());
+          
           
           
           String myginikanan =lbl_ginikanan.getText();
@@ -960,6 +1009,12 @@ public class Profile extends javax.swing.JFrame {
            }
           
           
+            
+             
+           
+          
+           
+           
            
           // cbo_municipality.setSelectedItem(jTable_display.getValueAt(jTable_display.getSelectedRow(), 15).toString());
          // cbo_barangay.setSelectedItem(jTable_display.getValueAt(jTable_display.getSelectedRow(), 16).toString());
@@ -1022,14 +1077,14 @@ public class Profile extends javax.swing.JFrame {
         
             btn_cancel.setVisible(true);
             btn_new.setVisible(false);
-            txt_address.setVisible(false);
+          
             btn_next.setVisible(false);
-            txt_address.setEnabled(false);
-            
+           
+            btn_update1.setEnabled(false);
             
             enabled();
             
-            setthetext();
+            clear();
             
             
             
@@ -1047,12 +1102,22 @@ public class Profile extends javax.swing.JFrame {
 
     private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
         // TODO add your handling code here:
-        btn_update.setEnabled(true);
+        
+        try {
+            displayData();
+            btn_update.setEnabled(true);
         btn_delete.setEnabled(true);
          btn_cancel.setVisible(false);
          btn_next.setVisible(true);
           btn_next.setEnabled(true);
         btn_new.setVisible(true);
+        btn_update1.setEnabled(true);
+        disabled();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btn_cancelActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
@@ -1149,8 +1214,9 @@ public class Profile extends javax.swing.JFrame {
      
             
             
-            
-             
+              displayData();
+              btn_update1.setVisible(true);
+              disabled();
             s.close();   //close statement
             classDb.conn.close(); // close connection
 
@@ -1176,7 +1242,7 @@ public class Profile extends javax.swing.JFrame {
     private void btn_update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_update1ActionPerformed
         // TODO add your handling code here:
         
-         txt_address.setVisible(false);
+        
         
             txt_family_head_firstname.setEnabled(true);
             txt_family_head_lastname.setEnabled(true);
@@ -1194,6 +1260,188 @@ public class Profile extends javax.swing.JFrame {
             btn_update1.setVisible(false);
         
     }//GEN-LAST:event_btn_update1ActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        // TODO add your handling code here:
+         classDb.dbconnect();
+        
+          Object [] options = {"OK","CANCEL"};
+       if(JOptionPane.showOptionDialog(null, "Do you really want to delete this records?","Confirm!!",JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0])==1)
+       {
+     
+           
+       }
+       
+       else
+       {
+           
+           
+             try {
+                 s = classDb.conn.createStatement();
+                 
+                 s.executeUpdate("DELETE FROM pro WHERE id = '" + lbl_ids.getText() + "' ");
+
+          
+            JOptionPane.showMessageDialog(null, "Record is Deleted, Done.....", "Delete Record Notification", JOptionPane.INFORMATION_MESSAGE);
+          
+            
+              s.close();
+                 
+              displayData();
+              
+              
+             } catch (SQLException ex) {
+                 Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            
+
+  
+           
+           
+       }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
+        // TODO add your handling code here:
+        
+          classDb.dbconnect();
+        
+       
+        
+        
+         try {
+             
+              String query = txt_search.getText();
+          filter(query);
+        
+             
+             
+             
+             s = classDb.conn.createStatement();
+              // TODO add your handling code here:
+            
+              //  rs = s.executeQuery("SELECT * FROM otpnm_table");
+              rs = s.executeQuery("SELECT * FROM pro WHERE code = '" + txt_search.getText() + "' OR last_name = '" + txt_search.getText() + "' OR first_name = '" + txt_search.getText() + "'");
+
+              rs.last(); // go to the last record to get total records
+            
+           if (rs.getRow() > 0) {  // if total rows is greater than zero , naay sulod
+                rs.beforeFirst(); // go to top row...
+ 
+                while (rs.next()) {
+                    lbl_ids.setText(rs.getString(1));
+                txt_code.setText(rs.getString(2));       
+             txt_family_head_lastname.setText(rs.getString(3));
+             txt_family_head_firstname.setText(rs.getString(4));
+            txt_family_head_middlename.setText(rs.getString(5));
+            txt_age.setText(rs.getString(6));
+             cbo_sex.setSelectedItem(rs.getString(7));
+            cbo_status.setSelectedItem(rs.getString(8));
+            txt_occupation.setText(rs.getString(9));
+       
+         
+      
+       
+       
+        cbo_status_of_employment.setSelectedItem(rs.getString(10));
+        txt_spouse_name.setText(rs.getString(11));
+         txt_spouse_age.setText(rs.getString(12));
+          txt_spouse_occupation.setText(rs.getString(13));
+           txt_no_of_children_male.setText(rs.getString(14));
+          txt_no_of_children_female.setText(rs.getString(15));
+          
+                lbl_ginikanan.setText(rs.getString(17));
+                 lbl_igsoon.setText(rs.getString(18));
+                lbl_pagumangkon.setText(rs.getString(19));
+       
+            String myginikanan =lbl_ginikanan.getText();
+          String igsoon = lbl_igsoon.getText();
+          String pagumangkon = lbl_pagumangkon.getText();
+          
+          
+          
+          int i = Integer.parseInt(myginikanan);
+          int k = Integer.parseInt(igsoon);
+          int j = Integer.parseInt(pagumangkon);
+          
+          if(i==1)
+          {
+              
+              cho_ginikanan.setSelected(true);
+          }
+          else
+          {
+              cho_ginikanan.setSelected(false);
+              
+          }
+           if(k==1)
+          {
+              
+              cho_igsoon.setSelected(true);
+              
+          }
+           else
+           {
+               cho_igsoon.setSelected(false);
+               
+           }
+           if(j==1)
+          {
+              
+              cho_pagumangkon.setSelected(true);
+              
+          }
+          
+           else
+           {
+                 
+                cho_pagumangkon.setSelected(false);
+           }
+            
+            
+          
+            
+            
+            
+    
+                } //While end
+                
+            } else {
+              
+               displayData();
+              clear();
+              
+               
+             cho_igsoon.setSelected(false);
+              cho_ginikanan.setSelected(false);
+              cho_pagumangkon.setSelected(false);
+              
+            // auto_number();
+             
+           
+           }
+           
+           
+         
+
+          } catch (SQLException ex) {
+              Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+          }
+         
+         
+         
+     
+         
+           
+        
+        
+        
+    }//GEN-LAST:event_txt_searchKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1262,6 +1510,7 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1283,13 +1532,11 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_display;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl_ginikanan;
     private javax.swing.JLabel lbl_ids;
     private javax.swing.JLabel lbl_igsoon;
     private javax.swing.JLabel lbl_pagumangkon;
     private javax.swing.JLabel lblpurokid;
-    private javax.swing.JTextField txt_address;
     private javax.swing.JTextField txt_age;
     private javax.swing.JTextField txt_code;
     private javax.swing.JTextField txt_family_head_firstname;
@@ -1298,6 +1545,7 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JTextField txt_no_of_children_female;
     private javax.swing.JTextField txt_no_of_children_male;
     private javax.swing.JTextField txt_occupation;
+    private javax.swing.JTextField txt_search;
     private javax.swing.JTextField txt_spouse_age;
     private javax.swing.JTextField txt_spouse_name;
     private javax.swing.JTextField txt_spouse_occupation;

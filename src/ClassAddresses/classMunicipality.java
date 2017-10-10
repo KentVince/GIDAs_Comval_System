@@ -52,6 +52,10 @@ public class classMunicipality {
         }
         
     }
+
+    public void list_municipality(JComboBox<String> jComboBox2, int id_di) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

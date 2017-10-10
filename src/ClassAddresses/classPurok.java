@@ -49,6 +49,10 @@ public class classPurok {
         }
         
     }
+
+    public void list_purok(JComboBox<String> jComboBoxPurok) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     
